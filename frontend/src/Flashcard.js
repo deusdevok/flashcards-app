@@ -1,27 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 
-function Flashcard() {
-    const [flashcards, setFlashcards] = useState([]);
+function Flashcard({ card, onDelete }) {
+  const [showDefinition, setShowDefinition] = useState(false);
 
-    useEffect(() => {
-        axios.get('http://localhost:8000/api/flashcards/')
-            .then(response => {
-                setFlashcards(response.data);
-            })
-            .catch(error => console.log(error));
-    }, []);
+  const toggleShowDefinition = () => {
+    setShowDefinition(!showDefinition);
+  };
 
-    return (
-        <div>
-            {flashcards.map(flashcard => (
-                <div key={flashcard.id}>
-                    <h2>{flashcard.term}</h2>
-                    <p>{flashcard.definition}</p>
-                </div>
-            ))}
-        </div>
-    );
+  return (
+    <div 
+      className="flashcard" 
+      onClick={toggleShowDefinition} 
+      style={{ cursor: 'pointer', padding: '20px', margin: '10px', backgroundColor: '#f9f9f9', border: '1px solid #ddd', borderRadius: '5px' }}
+    >
+      {showDefinition ? card.definition : card.term}
+      <button 
+        onClick={(e) => {
+          e.stopPropagation(); // Prevent the card from toggling when clicking the button
+          onDelete(card.id);
+        }}
+        style={{ float: 'right' }}
+      >
+        Delete
+      </button>
+    </div>
+  );
 }
 
 export default Flashcard;

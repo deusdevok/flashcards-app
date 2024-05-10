@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function NewFlashcardForm() {
+function NewFlashcardForm({ onAddFlashcard }) {
     const [term, setTerm] = useState('');
     const [definition, setDefinition] = useState('');
 
@@ -9,7 +9,7 @@ function NewFlashcardForm() {
         event.preventDefault();
         axios.post('http://localhost:8000/api/flashcards/', { term, definition })
             .then(response => {
-                console.log(response.data);
+                onAddFlashcard(response.data);
                 setTerm('');
                 setDefinition('');
                 alert('Flashcard added!');
