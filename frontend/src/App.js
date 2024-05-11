@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Flashcard from './Flashcard';
-import NewFlashcardForm from './NewFlashcardForm';
+import Flashcard from './components/Flashcard';
+import NewFlashcardForm from './components/NewFlashcardForm';
 
 function App() {
   const [flashcards, setFlashcards] = useState([]);

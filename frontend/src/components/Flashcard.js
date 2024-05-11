@@ -1,3 +1,4 @@
+import '../FlashcardStyles.css';
 import React, { useState } from 'react';
 
 function Flashcard({ card, onDelete }) {
@@ -8,18 +9,23 @@ function Flashcard({ card, onDelete }) {
   };
 
   return (
-    <div 
-      className="flashcard" 
-      onClick={toggleShowDefinition} 
-      style={{ cursor: 'pointer', padding: '20px', margin: '10px', backgroundColor: '#f9f9f9', border: '1px solid #ddd', borderRadius: '5px' }}
-    >
-      {showDefinition ? card.definition : card.term}
+    <div className="flashcard-container">
+      <div className="flashcard" onClick={toggleShowDefinition}>
+        <div className={`card-content ${showDefinition ? 'flip' : ''}`}>
+          <div className="card-face front">
+            {card.term}
+          </div>
+          <div className="card-face back">
+            {card.definition}
+          </div>
+        </div>
+      </div>
       <button 
+        className="delete-button"
         onClick={(e) => {
           e.stopPropagation(); // Prevent the card from toggling when clicking the button
           onDelete(card.id);
         }}
-        style={{ float: 'right' }}
       >
         Delete
       </button>
