@@ -18,13 +18,14 @@ function NewFlashcardForm({ onAddFlashcard }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='form-terms' onSubmit={handleSubmit}>
             <label>
-                Term:
-                <input type="text" value={term} onChange={(e) => setTerm(e.target.value)} />
+                <p>Term:</p>
+                <textarea value={term} onChange={(e) => setTerm(e.target.value)} />
             </label>
+            <hr />
             <label>
-                Definition:
+                <p>Definition:</p>
                 <textarea value={definition} onChange={(e) => setDefinition(e.target.value)} />
             </label>
             <button type="submit">Add Flashcard</button>

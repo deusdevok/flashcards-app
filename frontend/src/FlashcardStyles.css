@@ -59,4 +59,34 @@
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
+
+/* FORM */
+.form-terms {
+    background: #f8f8f8;
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-terms label {
+    display: block;
+    margin: 5px auto;
+}
+
+.form-terms label p {
+    text-align: center;
+}
+
+.form-terms button {
+    display: block;
+    margin: 0 auto;
+}
   
+textarea {
+    display: block;
+    width: 300px;
+    height: 80px;
+    max-width: 400px;
+    max-height: 400px;
+    margin: 0 auto;
+}
