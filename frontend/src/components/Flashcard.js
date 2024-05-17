@@ -10,6 +10,7 @@ function Flashcard({ card, onDelete }) {
 
   return (
     <div className="flashcard-container">
+      <p>Category: {card.category}</p>
       <div className="flashcard" onClick={toggleShowDefinition}>
         <div className={`card-content ${showDefinition ? 'flip' : ''}`}>
           <div className="card-face front">
