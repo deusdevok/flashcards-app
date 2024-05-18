@@ -1,3 +1,7 @@
+h1 {
+    text-align: center;
+}
+
 .flashcard-container {
     display: flex;
     align-items: center;
