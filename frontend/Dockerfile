@@ -1,21 +1,21 @@
 # Dockerfile for React frontend
-FROM node:14
+FROM node:14-alpine
 
-# Set work directory
+# Set work directory to match the volume mount in docker-compose
 WORKDIR /usr/src/app/frontend
 
+# Copy package.json and package-lock.json
+COPY package*.json .
+
 # Install dependencies
-COPY package*.json ./
 RUN npm install
 
-# Copy project
+# Copy project files
 COPY . .
 
-# Expose port 3000 to the outside world
+# Expose port 3000
 EXPOSE 3000
 
-# Build the app
-RUN npm run build
-
-# Run the application
+# Start the application in development mode
+#CMD ["sh", "-c", "npm run start"]
 CMD ["npm", "start"]

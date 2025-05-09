@@ -2,7 +2,11 @@
 
 # Flashcards app
 
-Django and React
+Django and React. Run with Docker:
+
+```
+docker compose up --build
+```
 
 ## Backend
 

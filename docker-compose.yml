@@ -20,10 +20,13 @@ services:
     container_name: react-frontend
     volumes:
       - ./frontend:/usr/src/app/frontend
+      - node_modules:/usr/src/app/frontend/node_modules
     ports:
       - "3000:3000"
     depends_on:
       - backend
 
 volumes:
+  # Adds a volume to store node dependencies
   sqlite_data:
+  node_modules:
