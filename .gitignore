@@ -26,4 +26,8 @@ yarn-error.log*
 
 # Python
 .venv/
+venv/
 __pycache__/
+
+# Databases
+*.sqlite3
