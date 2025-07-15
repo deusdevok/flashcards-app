@@ -2,6 +2,12 @@
 
 # Flashcards app
 
+Create a `.env` file with your secret key:
+
+```
+SECRET_KEY=your-randomly-generated-secret-key
+```
+
 Django and React. Run with Docker:
 
 ```
@@ -24,3 +30,11 @@ When changing models, migrations need to be correctly run:
 Not null constraint erros may appear sometimes. When adding a new column with `default=None`, you need to also include `null=True`.
 
 Another way to solve this problem is to include a default value different than `None`. For example: `default=''`.
+
+## Audit backend requirements
+
+To audit requirements, run:
+
+```
+python -m pip_audit -r .\backend\requirements.txt
+```

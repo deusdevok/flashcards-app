@@ -31,3 +31,6 @@ __pycache__/
 
 # Databases
 *.sqlite3
+
+# Security
+.env
