@@ -1,39 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Flashcard from './components/Flashcard';
-import NewFlashcardForm from './components/NewFlashcardForm';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
+import ManageFlashcards from './components/ManageFlashcards';
+import StudyFlashcards from './components/StudyFlashcards';
+import './App.css';
 
 function App() {
-  const [flashcards, setFlashcards] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:8000/api/flashcards/')
-      .then(response => {
-        setFlashcards(response.data);
-      })
-      .catch(error => console.error('Error fetching data: ', error));
-  }, []);
-
-  const addFlashcard = (newCard) => {
-    setFlashcards([...flashcards, newCard]);
-  };
-
-  const deleteFlashcard = (id) => {
-    axios.delete(`http://localhost:8000/api/flashcards/${id}/`)
-      .then(() => {
-        setFlashcards(flashcards.filter(card => card.id !== id));
-      })
-      .catch(error => console.error('Error deleting flashcard: ', error));
-  };
-
   return (
-    <div>
-      <h1>Flashcards</h1>
-      <NewFlashcardForm onAddFlashcard={addFlashcard} />
-      {flashcards.map(card => (
-        <Flashcard key={card.id} card={card} onDelete={deleteFlashcard} />
-      ))}
-    </div>
+    <Router>
+      <div className="App">
+        <nav className="navbar">
+          <Link to="/manage">Manage</Link>
+          <Link to="/study">Study</Link>
+        </nav>
+        <Routes>
+          <Route path="/manage" element={<ManageFlashcards />} />
+          <Route path="/study" element={<StudyFlashcards />} />
+          <Route path="*" element={<Navigate to="/manage" />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

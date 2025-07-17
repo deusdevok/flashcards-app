@@ -22,16 +22,16 @@ class FlashcardAPITestCase(TestCase):
     def test_get_flashcard_detail(self):
         response = self.client.get(self.detail_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['term'], self.flashcard.term)
+        self.assertEqual(response.data['front'], self.flashcard.term)
 
     def test_create_flashcard(self):
-        data = {'term': 'What is 2+2?', 'definition': '4', 'category': 'Math'}
+        data = {'front': 'What is 2+2?', 'back': '4', 'category': 'Math'}
         response = self.client.post(self.list_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Flashcard.objects.count(), 2)
 
     def test_update_flashcard(self):
-        data = {'term': 'What is the capital of Germany?', 'definition': 'Berlin'}
+        data = {'front': 'What is the capital of Germany?', 'back': 'Berlin'}
         response = self.client.put(self.detail_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.flashcard.refresh_from_db()

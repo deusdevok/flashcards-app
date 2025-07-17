@@ -1,11 +1,11 @@
 # Dockerfile for React frontend
-FROM node:14-alpine
+FROM node:22-alpine
 
 # Set work directory to match the volume mount in docker-compose
 WORKDIR /usr/src/app/frontend
 
 # Copy package.json and package-lock.json
-COPY package*.json .
+COPY package*.json ./
 
 # Install dependencies
 RUN npm install

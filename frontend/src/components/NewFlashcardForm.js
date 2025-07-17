@@ -1,43 +1,34 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
-function NewFlashcardForm({ onAddFlashcard }) {
-    const [term, setTerm] = useState('');
-    const [definition, setDefinition] = useState('');
-    const [category, setCategory] = useState('');
+function NewFlashcardForm({ onAdd }) {
+  const [front, setFront] = useState('');
+  const [back, setBack] = useState('');
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        axios.post('http://localhost:8000/api/flashcards/', { term, definition, category })
-            .then(response => {
-                onAddFlashcard(response.data);
-                setTerm('');
-                setDefinition('');
-                setCategory('');
-                alert('Flashcard added!');
-            })
-            .catch(error => alert('Error adding flashcard'));
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!front.trim() || !back.trim()) return;
+    onAdd(front, back);
+    setFront('');
+    setBack('');
+  };
 
-    return (
-        <form className='form-terms' onSubmit={handleSubmit}>
-            <label>
-                <p>Term:</p>
-                <textarea value={term} onChange={(e) => setTerm(e.target.value)} />
-            </label>
-            <hr />
-            <label>
-                <p>Definition:</p>
-                <textarea value={definition} onChange={(e) => setDefinition(e.target.value)} />
-            </label>
-            <hr />
-            <label>
-                <p>Category:</p>
-                <textarea value={category} onChange={(e) => setCategory(e.target.value)} />
-            </label>
-            <button type="submit">Add Flashcard</button>
-        </form>
-    );
+  return (
+    <form className="new-flashcard-form" onSubmit={handleSubmit}>
+      <input
+        value={front}
+        onChange={e => setFront(e.target.value)}
+        placeholder="Front"
+        required
+      />
+      <input
+        value={back}
+        onChange={e => setBack(e.target.value)}
+        placeholder="Back"
+        required
+      />
+      <button type="submit">Add</button>
+    </form>
+  );
 }
 
 export default NewFlashcardForm;
