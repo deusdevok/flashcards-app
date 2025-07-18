@@ -38,3 +38,7 @@ To audit requirements, run:
 ```
 python -m pip_audit -r .\backend\requirements.txt
 ```
+
+## This section will be removed
+
+This is made for testing a Pull Request
