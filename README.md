@@ -2,6 +2,12 @@
 
 # Flashcards app
 
+## Workflow (made with [draw.io](draw.io))
+
+![flashcard app diagram](flashcardsapp.jpg "App Workflow")
+
+## General instructions
+
 Create a `.env` file with your secret key:
 
 ```
