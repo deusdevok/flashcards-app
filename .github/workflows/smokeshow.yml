@@ -15,9 +15,6 @@ jobs:
   smokeshow:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./backend
 
     steps:
       - name: Dump GitHub context
@@ -37,6 +34,7 @@ jobs:
             requirements.txt
             pyproject.toml
       - run: uv pip install -r requirements.txt
+        working-directory: ./backend
       - uses: actions/download-artifact@v4
         with:
           name: coverage-html
@@ -54,6 +52,7 @@ jobs:
             echo "Smokeshow upload error, sleep 1 sec and try again."
             sleep 1
           done
+        working-directory: ./backend
         env:
           SMOKESHOW_GITHUB_STATUS_DESCRIPTION: Coverage {coverage-percentage}
           SMOKESHOW_GITHUB_COVERAGE_THRESHOLD: 100
