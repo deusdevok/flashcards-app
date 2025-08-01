@@ -5,6 +5,10 @@ on:
     workflows: [Test]
     types: [completed]
 
+defaults:
+  run:
+    working-directory: backend
+
 permissions:
   statuses: write
 
@@ -15,9 +19,7 @@ jobs:
   smokeshow:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: backend
+    
 
     steps:
       - uses: actions/checkout@v4

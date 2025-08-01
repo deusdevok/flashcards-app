@@ -7,15 +7,17 @@ on:
     types:
       - opened
 
+defaults:
+  run:
+    working-directory: backend
+
 env:
   UV_SYSTEM_PYTHON: 1
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: backend
+    
     strategy:
       matrix:
         python-version:
@@ -53,16 +55,13 @@ jobs:
       - name: Store coverage files
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-${{ matrix.python-version }}-${{ matrix.pydantic-version }}
+          name: coverage-${{ matrix.python-version }}
           path: coverage
           include-hidden-files: true
 
   coverage-combine:
     needs: [test]
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: backend
     steps:
       - uses: actions/checkout@v4
       - name: Dump GitHub context
