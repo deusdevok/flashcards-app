@@ -11,3 +11,13 @@
 ## Swagger docs
 
 Docs are in the url: `/api/schema/swagger-ui/`
+
+## Coverage
+
+1. Run all Django tests and collect coverage data in .coverage
+`uv run coverage run manage.py test`
+2.
+```
+uv run coverage xml
+uv run genbadge coverage -o coverage-badge.svg
+```

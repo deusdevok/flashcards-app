@@ -1,0 +1,45 @@
+name: Django Tests and Coverage Badge
+
+on:
+  push:
+    branches: [main]  # Change if needed
+  pull_request:
+
+env:
+  UV_SYSTEM_PYTHON: 1
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "latest"
+
+      - name: Install dependencies
+        run: uv pip install coverage genbadge
+
+      - name: Run Django tests with coverage
+        working-directory: backend
+        run: |
+          coverage run manage.py test
+          coverage xml
+          mkdir -p ../reports/coverage
+          mv coverage.xml ../reports/coverage/coverage.xml
+
+      - name: Generate badge
+        run: |
+        working-directory: backend
+          mkdir -p ../badges
+          genbadge coverage --input-file reports/coverage/coverage.xml -o ../badges/coverage-badge.svg
+
