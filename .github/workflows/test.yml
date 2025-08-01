@@ -22,6 +22,7 @@ jobs:
           - "3.13"
       fail-fast: false
 
+    environment: SECRET_KEY
     steps:
       - uses: actions/checkout@v4
       - name: Dump GitHub context
@@ -62,6 +63,7 @@ jobs:
     defaults:
       run:
         working-directory: backend
+    environment: SECRET_KEY
     steps:
       - uses: actions/checkout@v4
       - name: Dump GitHub context
