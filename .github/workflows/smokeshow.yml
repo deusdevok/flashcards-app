@@ -11,6 +11,9 @@ defaults:
 
 permissions:
   actions: read
+  contents: read
+  checks: write
+  statuses: write
 
 env:
   UV_SYSTEM_PYTHON: 1
