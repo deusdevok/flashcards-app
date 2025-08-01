@@ -9,6 +9,9 @@ defaults:
   run:
     working-directory: backend
 
+permissions:
+  actions: read
+
 env:
   UV_SYSTEM_PYTHON: 1
 
