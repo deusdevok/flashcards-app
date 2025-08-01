@@ -41,8 +41,8 @@ jobs:
           version: "0.4.15"
           enable-cache: true
           cache-dependency-glob: |
-            requirements.txt
-            pyproject.toml
+            backend/requirements.txt
+            backend/pyproject.toml
       - name: Install Dependencies
         run: uv pip install -r requirements.txt
       - run: mkdir coverage
@@ -56,7 +56,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-${{ matrix.python-version }}
-          path: coverage
+          path: backend/coverage
           include-hidden-files: true
 
   coverage-combine:
@@ -78,15 +78,15 @@ jobs:
           version: "0.4.15"
           enable-cache: true
           cache-dependency-glob: |
-            requirements.txt
-            pyproject.toml
+            backend/requirements.txt
+            backend/pyproject.toml
       - name: Install Dependencies
         run: uv pip install -r requirements.txt
       - name: Get coverage files
         uses: actions/download-artifact@v4
         with:
           pattern: coverage-*
-          path: coverage
+          path: backend/coverage
           merge-multiple: true
       - run: ls -la coverage
       - run: coverage combine coverage
@@ -96,5 +96,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-html
-          path: htmlcov
+          path: backend/htmlcov
           include-hidden-files: true
