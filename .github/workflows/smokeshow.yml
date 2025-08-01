@@ -9,9 +9,6 @@ defaults:
   run:
     working-directory: backend
 
-permissions:
-  statuses: write
-
 env:
   UV_SYSTEM_PYTHON: 1
 
