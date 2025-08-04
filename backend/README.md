@@ -18,6 +18,7 @@ Docs are in the url: `/api/schema/swagger-ui/`
 `uv run coverage run manage.py test`
 2.
 ```
+uv run coverage report
 uv run coverage xml
 uv run genbadge coverage -o coverage-badge.svg
 ```
