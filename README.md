@@ -1,54 +1,19 @@
-<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/deusdevok/flashcards-app" target="_blank">
-    <img src="https://coverage-badge.samuelcolvin.workers.dev/deusdevok/flashcards-app.svg" alt="Coverage">
-</a>
-
-![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
 
 # Flashcards app
 
-## Workflow (made with [draw.io](draw.io))
+A simple flashcards app made with Django and React. It's a simple app that allows you to create flashcards and study them. Next is a demo of how the app works.
+
+![flashcard app animation](flashcardsapp.gif "app demo")
+
+## Workflow (made with [draw.io](https://app.diagrams.net/))
 
 ![flashcard app diagram](flashcardsapp.jpg "App Workflow")
 
-## General instructions
+## Run with Docker:
 
-Create a `.env` file with your secret key:
-
-```
-SECRET_KEY=your-randomly-generated-secret-key
-```
-
-Django and React. Run with Docker:
+In order to run the app, you need to have Docker installed and running. Then, you can run the app with the following command:
 
 ```
-docker compose up --build
+docker compose up --build -d
 ```
-
-## Backend
-
-Todos:
-
-* model `Flashcard` should have a unique `id`. Maybe a `uuid`. Is this automatic in Django?
-
-### Migrations
-
-When changing models, migrations need to be correctly run:
-
-* Step 1: `python manage.py makemigrations`
-* Step 2: `python manage.py migrate`
-
-Not null constraint erros may appear sometimes. When adding a new column with `default=None`, you need to also include `null=True`.
-
-Another way to solve this problem is to include a default value different than `None`. For example: `default=''`.
-
-## Audit backend requirements
-
-To audit requirements, run:
-
-```
-python -m pip_audit -r .\backend\requirements.txt
-```
-
-## This section will be removed
-
-This is made for testing a Pull Request

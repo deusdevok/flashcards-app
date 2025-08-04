@@ -4,7 +4,6 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: django-backend
-    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./backend:/usr/src/app/backend
       - sqlite_data:/usr/src/app/backend/backend/db.sqlite3

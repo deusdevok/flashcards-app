@@ -1,3 +1,17 @@
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/deusdevok/flashcards-app" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/deusdevok/flashcards-app.svg" alt="Coverage">
+</a>
+
+# Backend (Django)
+
+## General instructions
+
+Create a `.env` file with your secret key:
+
+```
+SECRET_KEY=your-randomly-generated-secret-key
+```
+
 ## Run locally with *uv*
 
 - cd into the current folder
@@ -21,4 +35,23 @@ Docs are in the url: `/api/schema/swagger-ui/`
 uv run coverage report
 uv run coverage xml
 uv run genbadge coverage -o coverage-badge.svg
+```
+
+## Migrations
+
+When changing models, migrations need to be correctly run:
+
+* Step 1: `python manage.py makemigrations`
+* Step 2: `python manage.py migrate`
+
+Not null constraint erros may appear sometimes. When adding a new column with `default=None`, you need to also include `null=True`.
+
+Another way to solve this problem is to include a default value different than `None`. For example: `default=''`.
+
+## Audit backend requirements
+
+To audit requirements, run:
+
+```
+python -m pip_audit -r .\backend\requirements.txt
 ```
